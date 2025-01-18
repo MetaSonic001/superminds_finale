@@ -469,7 +469,7 @@ export default function LandingPage() {
                 Simple, Transparent Pricing
               </h2>
               <p className="max-w-[85%] text-[#222222]/80">
-                Choose the plan that's right for your business
+                Choose the plan thats right for your business
               </p>
             </div>
             <div className="mx-auto mt-8 grid max-w-5xl gap-8 sm:grid-cols-2 lg:grid-cols-3">
