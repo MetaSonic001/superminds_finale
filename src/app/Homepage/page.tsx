@@ -1,23 +1,40 @@
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { ArrowRight, BarChart2, Brain, Clock, Search, Shield, Sparkles, Zap } from 'lucide-react'
-import Image from "next/image"
-import Link from "next/link"
-import { ComparisonTable } from "@/components/comparison-table"
-import { FadeIn } from "@/components/fade-in"
-import { FadeUp } from "@/components/fade-up"
-import { LogoCloud } from "@/components/logo-cloud"
-import { TestimonialCard } from "@/components/testimonial-card"
-import { VideoModal } from "@/components/video-modal"
-import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  ArrowRight,
+  BarChart2,
+  Brain,
+  Clock,
+  Search,
+  Shield,
+  Sparkles,
+  Zap,
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { ComparisonTable } from "@/components/comparison-table";
+import { FadeIn } from "@/components/fade-in";
+import { FadeUp } from "@/components/fade-up";
+import { LogoCloud } from "@/components/logo-cloud";
+import { TestimonialCard } from "@/components/testimonial-card";
+import { VideoModal } from "@/components/video-modal";
+import { cn } from "@/lib/utils";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  SignOutButton,
+} from "@clerk/nextjs";
 
 export default function LandingPage() {
   return (
-    <div className={cn(
-      "flex min-h-screen flex-col",
-      "bg-[#fffff2] text-[#222222]",
-      "px-4 sm:px-6 lg:px-8"
-    )}>
+    <div
+      className={cn(
+        "flex min-h-screen flex-col",
+        "bg-[#fffff2] text-[#222222]",
+        "px-4 sm:px-6 lg:px-8",
+      )}
+    >
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex h-14 items-center justify-between">
           <Link href="/" className="flex items-center space-x-2">
@@ -25,19 +42,34 @@ export default function LandingPage() {
             <span className="font-bold">SparkAgency</span>
           </Link>
           <nav className="flex items-center gap-6">
-            <Link href="#features" className="text-sm font-medium hover:underline">
+            <Link
+              href="#features"
+              className="text-sm font-medium hover:underline"
+            >
               Features
             </Link>
-            <Link href="#how-it-works" className="text-sm font-medium hover:underline">
+            <Link
+              href="#how-it-works"
+              className="text-sm font-medium hover:underline"
+            >
               How it Works
             </Link>
-            <Link href="#pricing" className="text-sm font-medium hover:underline">
+            <Link
+              href="#pricing"
+              className="text-sm font-medium hover:underline"
+            >
               Pricing
             </Link>
-            <Button variant="ghost" asChild className="text-[#222222] hover:text-[#218380]">
-              <Link href="/login">Login</Link>
-            </Button>
-            <Button asChild className="bg-[#218380] text-[#fffff2] hover:bg-[#ffad05]">
+            <SignedOut>
+              <SignInButton />
+            </SignedOut>
+            <SignedIn>
+              <SignOutButton />
+            </SignedIn>
+            <Button
+              asChild
+              className="bg-[#218380] text-[#fffff2] hover:bg-[#ffad05]"
+            >
               <Link href="/signup">Start Free Trial</Link>
             </Button>
           </nav>
@@ -56,17 +88,26 @@ export default function LandingPage() {
                   Create Campaigns That Convert.
                 </h1>
                 <p className="text-base sm:text-lg lg:text-xl text-[#222222]/80">
-                  SparkAgency automates your ad research by analyzing user pain points, competitor ads,
-                  and market trends — all in one platform.
+                  SparkAgency automates your ad research by analyzing user pain
+                  points, competitor ads, and market trends — all in one
+                  platform.
                 </p>
                 <div className="flex flex-col gap-3 sm:flex-row">
-                  <Button size="lg" asChild className="bg-[#ff715b] text-[#fffff2] hover:bg-[#ffad05]">
+                  <Button
+                    size="lg"
+                    asChild
+                    className="bg-[#ff715b] text-[#fffff2] hover:bg-[#ffad05]"
+                  >
                     <Link href="/signup">
                       Start Free Trial
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
-                  <Button size="lg" variant="outline" className="border-[#218380] text-[#218380] hover:bg-[#218380] hover:text-[#fffff2]">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-[#218380] text-[#218380] hover:bg-[#218380] hover:text-[#fffff2]"
+                  >
                     Book a Demo
                   </Button>
                 </div>
@@ -90,15 +131,23 @@ export default function LandingPage() {
           <FadeUp>
             <div className="grid gap-8 rounded-xl border border-[#ffad05] bg-[#fffff2] p-6 sm:p-8 md:grid-cols-3">
               <div className="flex flex-col items-center justify-center text-center">
-                <div className="text-2xl font-bold sm:text-3xl md:text-4xl text-[#ff715b]">85%</div>
-                <p className="text-sm text-[#222222]/80">Improved Ad Performance</p>
+                <div className="text-2xl font-bold sm:text-3xl md:text-4xl text-[#ff715b]">
+                  85%
+                </div>
+                <p className="text-sm text-[#222222]/80">
+                  Improved Ad Performance
+                </p>
               </div>
               <div className="flex flex-col items-center justify-center text-center">
-                <div className="text-2xl font-bold sm:text-3xl md:text-4xl text-[#218380]">20+ hrs</div>
+                <div className="text-2xl font-bold sm:text-3xl md:text-4xl text-[#218380]">
+                  20+ hrs
+                </div>
                 <p className="text-sm text-[#222222]/80">Saved Per Campaign</p>
               </div>
               <div className="flex flex-col items-center justify-center text-center">
-                <div className="text-2xl font-bold sm:text-3xl md:text-4xl text-[#ff715b]">10k+</div>
+                <div className="text-2xl font-bold sm:text-3xl md:text-4xl text-[#ff715b]">
+                  10k+
+                </div>
                 <p className="text-sm text-[#222222]/80">Active Users</p>
               </div>
             </div>
@@ -113,7 +162,8 @@ export default function LandingPage() {
                 Trusted by Leading Brands and Agencies
               </h2>
               <p className="max-w-[85%] text-muted-foreground">
-                Join over 1,000+ marketers and agencies already using SparkAgency
+                Join over 1,000+ marketers and agencies already using
+                SparkAgency
               </p>
             </div>
             <div className="mx-auto mt-10 max-w-5xl">
@@ -123,46 +173,63 @@ export default function LandingPage() {
         </section>
 
         {/* Why Choose Us Section */}
-        <section id="features" className="container max-w-7xl mx-auto py-12 sm:py-16 lg:py-20">
+        <section
+          id="features"
+          className="container max-w-7xl mx-auto py-12 sm:py-16 lg:py-20"
+        >
           <FadeUp>
             <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
-              <h2 className="text-2xl font-bold sm:text-3xl lg:text-4xl">Why Choose SparkAgency?</h2>
+              <h2 className="text-2xl font-bold sm:text-3xl lg:text-4xl">
+                Why Choose SparkAgency?
+              </h2>
               <p className="max-w-[85%] text-[#222222]/80">
-                Powerful features to help you create data-driven, high-converting ad campaigns
+                Powerful features to help you create data-driven,
+                high-converting ad campaigns
               </p>
             </div>
             <div className="mx-auto grid max-w-5xl gap-8 py-8 sm:py-12 sm:grid-cols-2 lg:grid-cols-3">
               <Card className="bg-[#fffff2] border-[#218380]">
                 <CardContent className="flex flex-col items-center gap-3 p-6">
                   <Search className="h-10 w-10 text-[#ff715b]" />
-                  <h3 className="text-center text-xl font-bold">Research Automation</h3>
+                  <h3 className="text-center text-xl font-bold">
+                    Research Automation
+                  </h3>
                   <p className="text-center text-sm text-[#222222]/80">
-                    Analyze blogs, forums, app reviews, and competitor ads effortlessly
+                    Analyze blogs, forums, app reviews, and competitor ads
+                    effortlessly
                   </p>
                 </CardContent>
               </Card>
               <Card className="bg-[#fffff2] border-[#218380]">
                 <CardContent className="flex flex-col items-center gap-3 p-6">
                   <Brain className="h-10 w-10 text-[#ff715b]" />
-                  <h3 className="text-center text-xl font-bold">Sentiment Analysis</h3>
+                  <h3 className="text-center text-xl font-bold">
+                    Sentiment Analysis
+                  </h3>
                   <p className="text-center text-sm text-[#222222]/80">
-                    Identify what drives your audience through advanced AI insights
+                    Identify what drives your audience through advanced AI
+                    insights
                   </p>
                 </CardContent>
               </Card>
               <Card className="bg-[#fffff2] border-[#218380]">
                 <CardContent className="flex flex-col items-center gap-3 p-6">
                   <BarChart2 className="h-10 w-10 text-[#ff715b]" />
-                  <h3 className="text-center text-xl font-bold">Competitor Analysis</h3>
+                  <h3 className="text-center text-xl font-bold">
+                    Competitor Analysis
+                  </h3>
                   <p className="text-center text-sm text-[#222222]/80">
-                    Get detailed insights into competitor strategies and performance
+                    Get detailed insights into competitor strategies and
+                    performance
                   </p>
                 </CardContent>
               </Card>
               <Card className="bg-[#fffff2] border-[#218380]">
                 <CardContent className="flex flex-col items-center gap-3 p-6">
                   <Zap className="h-10 w-10 text-[#ff715b]" />
-                  <h3 className="text-center text-xl font-bold">Quick Insights</h3>
+                  <h3 className="text-center text-xl font-bold">
+                    Quick Insights
+                  </h3>
                   <p className="text-center text-sm text-[#222222]/80">
                     Access actionable insights and recommendations instantly
                   </p>
@@ -180,7 +247,9 @@ export default function LandingPage() {
               <Card className="bg-[#fffff2] border-[#218380]">
                 <CardContent className="flex flex-col items-center gap-3 p-6">
                   <Shield className="h-10 w-10 text-[#ff715b]" />
-                  <h3 className="text-center text-xl font-bold">Data Security</h3>
+                  <h3 className="text-center text-xl font-bold">
+                    Data Security
+                  </h3>
                   <p className="text-center text-sm text-[#222222]/80">
                     Enterprise-grade security for your research and insights
                   </p>
@@ -191,11 +260,16 @@ export default function LandingPage() {
         </section>
 
         {/* How It Works Section */}
-        <section id="how-it-works" className="bg-[#218380]/10 container max-w-7xl mx-auto">
+        <section
+          id="how-it-works"
+          className="bg-[#218380]/10 container max-w-7xl mx-auto"
+        >
           <div className=" py-12 sm:py-16 lg:py-20">
             <FadeUp>
               <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
-                <h2 className="text-2xl font-bold sm:text-3xl lg:text-4xl">How It Works</h2>
+                <h2 className="text-2xl font-bold sm:text-3xl lg:text-4xl">
+                  How It Works
+                </h2>
                 <p className="max-w-[85%] text-[#222222]/80">
                   Get started with SparkAgency in three simple steps
                 </p>
@@ -207,7 +281,8 @@ export default function LandingPage() {
                   </div>
                   <h3 className="text-xl font-bold">Input Your Topic</h3>
                   <p className="text-sm text-[#222222]/80">
-                    Select your industry, add custom keywords, and list competitors
+                    Select your industry, add custom keywords, and list
+                    competitors
                   </p>
                 </div>
                 <div className="relative flex flex-col items-center gap-4 text-center">
@@ -225,7 +300,8 @@ export default function LandingPage() {
                   </div>
                   <h3 className="text-xl font-bold">Get Insights</h3>
                   <p className="text-sm text-[#222222]/80">
-                    View insights and recommendations on your interactive dashboard
+                    View insights and recommendations on your interactive
+                    dashboard
                   </p>
                 </div>
               </div>
@@ -237,7 +313,9 @@ export default function LandingPage() {
         <section className="container max-w-7xl mx-auto py-14 sm:py-20">
           <FadeUp>
             <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
-              <h2 className="text-3xl font-bold sm:text-4xl">Trusted by Marketers</h2>
+              <h2 className="text-3xl font-bold sm:text-4xl">
+                Trusted by Marketers
+              </h2>
               <p className="max-w-[85%] text-muted-foreground">
                 See what our customers have to say about SparkAgency
               </p>
@@ -270,10 +348,12 @@ export default function LandingPage() {
           <div className=" py-14 sm:py-20">
             <FadeUp>
               <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
-                <h2 className="text-3xl font-bold sm:text-4xl">See SparkAgency in Action</h2>
+                <h2 className="text-3xl font-bold sm:text-4xl">
+                  See SparkAgency in Action
+                </h2>
                 <p className="max-w-[85%] text-muted-foreground">
-                  Watch how SparkAgency automates ad research, analyzes competitors, and delivers insights
-                  in just a few clicks
+                  Watch how SparkAgency automates ad research, analyzes
+                  competitors, and delivers insights in just a few clicks
                 </p>
               </div>
               <div className="mx-auto mt-10 max-w-4xl">
@@ -284,10 +364,15 @@ export default function LandingPage() {
         </section>
 
         {/* Pricing Section */}
-        <section id="pricing" className="container max-w-7xl mx-auto py-12 sm:py-16 lg:py-20">
+        <section
+          id="pricing"
+          className="container max-w-7xl mx-auto py-12 sm:py-16 lg:py-20"
+        >
           <FadeUp>
             <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
-              <h2 className="text-2xl font-bold sm:text-3xl lg:text-4xl">Simple, Transparent Pricing</h2>
+              <h2 className="text-2xl font-bold sm:text-3xl lg:text-4xl">
+                Simple, Transparent Pricing
+              </h2>
               <p className="max-w-[85%] text-[#222222]/80">
                 Choose the plan that's right for your business
               </p>
@@ -298,7 +383,9 @@ export default function LandingPage() {
                 <CardContent className="flex flex-col gap-6 p-6">
                   <div>
                     <h3 className="text-2xl font-bold">Starter</h3>
-                    <p className="text-sm text-[#222222]/80">Perfect for individuals</p>
+                    <p className="text-sm text-[#222222]/80">
+                      Perfect for individuals
+                    </p>
                   </div>
                   <div className="flex items-baseline gap-1">
                     <span className="text-3xl font-bold">$49</span>
@@ -371,7 +458,9 @@ export default function LandingPage() {
                 <CardContent className="flex flex-col gap-6 p-6">
                   <div>
                     <h3 className="text-2xl font-bold">Pro</h3>
-                    <p className="text-sm text-[#222222]/80">Perfect for small teams</p>
+                    <p className="text-sm text-[#222222]/80">
+                      Perfect for small teams
+                    </p>
                   </div>
                   <div className="flex items-baseline gap-1">
                     <span className="text-3xl font-bold">$99</span>
@@ -458,7 +547,9 @@ export default function LandingPage() {
                 <CardContent className="flex flex-col gap-6 p-6">
                   <div>
                     <h3 className="text-2xl font-bold">Enterprise</h3>
-                    <p className="text-sm text-[#222222]/80">Perfect for large teams</p>
+                    <p className="text-sm text-[#222222]/80">
+                      Perfect for large teams
+                    </p>
                   </div>
                   <div className="flex items-baseline gap-1">
                     <span className="text-3xl font-bold">Custom</span>
@@ -530,7 +621,9 @@ export default function LandingPage() {
           <div className=" py-14 sm:py-20">
             <FadeUp>
               <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
-                <h2 className="text-3xl font-bold sm:text-4xl">How Does SparkAgency Compare?</h2>
+                <h2 className="text-3xl font-bold sm:text-4xl">
+                  How Does SparkAgency Compare?
+                </h2>
                 <p className="max-w-[85%] text-muted-foreground">
                   See how we stack up against the competition
                 </p>
@@ -551,14 +644,22 @@ export default function LandingPage() {
                   Ready to Transform Your Ad Research?
                 </h2>
                 <p className="max-w-[85%] text-[#222222]/80">
-                  Join thousands of marketers who have already improved their campaign performance with
-                  SparkAgency
+                  Join thousands of marketers who have already improved their
+                  campaign performance with SparkAgency
                 </p>
                 <div className="flex flex-col gap-3 sm:flex-row">
-                  <Button size="lg" asChild className="bg-[#ff715b] text-[#fffff2] hover:bg-[#ffad05]">
+                  <Button
+                    size="lg"
+                    asChild
+                    className="bg-[#ff715b] text-[#fffff2] hover:bg-[#ffad05]"
+                  >
                     <Link href="/signup">Start Free Trial</Link>
                   </Button>
-                  <Button size="lg" variant="outline" className="border-[#218380] text-[#218380] hover:bg-[#218380] hover:text-[#fffff2]">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-[#218380] text-[#218380] hover:bg-[#218380] hover:text-[#fffff2]"
+                  >
                     Schedule Demo
                   </Button>
                 </div>
@@ -576,8 +677,8 @@ export default function LandingPage() {
               <span className="font-bold">SparkAgency</span>
             </Link>
             <p className="text-sm text-[#222222]/80">
-              Streamline your ad research process and create campaigns that convert with AI-powered
-              insights.
+              Streamline your ad research process and create campaigns that
+              convert with AI-powered insights.
             </p>
           </div>
           <div className="grid flex-1 grid-cols-2 gap-8 sm:grid-cols-3">
@@ -626,11 +727,17 @@ export default function LandingPage() {
           <div className="container max-w-7xl mx-auto flex flex-col items-center justify-between gap-4 py-6 md:h-24 md:flex-row md:py-0">
             <div className="text-center text-sm leading-loose text-[#222222]/80 md:text-left">
               Built by{" "}
-              <a href="#" className="font-medium underline underline-offset-4 text-[#ff715b]">
+              <a
+                href="#"
+                className="font-medium underline underline-offset-4 text-[#ff715b]"
+              >
                 SparkAgency
               </a>
               . The source code is available on{" "}
-              <a href="#" className="font-medium underline underline-offset-4 text-[#ff715b]">
+              <a
+                href="#"
+                className="font-medium underline underline-offset-4 text-[#ff715b]"
+              >
                 GitHub
               </a>
               .
@@ -639,6 +746,5 @@ export default function LandingPage() {
         </div>
       </footer>
     </div>
-  )
+  );
 }
-
