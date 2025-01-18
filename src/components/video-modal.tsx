@@ -19,15 +19,15 @@ export function VideoModal() {
           </div>
         </div>
         <video
-          src="/placeholder.mp4"
-          poster="/placeholder.svg"
+          src="/video2.mp4"
+          poster="/cover.png"
           className="h-full w-full object-cover"
         />
       </button>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="max-w-4xl p-0">
           <video
-            src="/placeholder.mp4"
+            src="/video2.mp4"
             controls
             autoPlay
             className="h-full w-full rounded-lg"

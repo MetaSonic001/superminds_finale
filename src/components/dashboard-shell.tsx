@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   Sidebar,
   SidebarContent,
@@ -10,9 +10,9 @@ import {
   SidebarFooter,
   SidebarProvider,
   SidebarTrigger,
-} from "@/components/ui/sidebar"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+} from "@/components/ui/sidebar";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,10 +20,22 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Search, User, Settings, CreditCard, LogOut, Home, FileText, BarChart, Users, Zap } from 'lucide-react'
+} from "@/components/ui/dropdown-menu";
+import {
+  Search,
+  User,
+  Settings,
+  CreditCard,
+  LogOut,
+  Plus,
+  Home,
+  FileText,
+  BarChart,
+  Users,
+  Zap,
+} from "lucide-react";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const navItems = [
   {
@@ -56,15 +68,15 @@ const navItems = [
     href: "/dashboard/integrations",
     icon: Zap,
   },
-]
+];
 
 export default function DashboardShell({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
-  const pathname = usePathname()
-  const [searchQuery, setSearchQuery] = useState("")
+  const pathname = usePathname();
+  const [searchQuery, setSearchQuery] = useState("");
 
   return (
     <SidebarProvider>
@@ -111,7 +123,7 @@ export default function DashboardShell({
             </Button>
           </SidebarFooter>
         </Sidebar>
-        <div className="flex flex-1 flex-col overflow-hidden">
+        <div className="flex flex-1 flex-col overflow-hidden h-full w-screen">
           <header className="flex h-14 lg:h-[60px] items-center gap-4 border-b bg-gray-100/40 px-6 dark:bg-gray-800/40">
             <SidebarTrigger className="md:hidden" />
             <div className="w-full flex-1">
@@ -166,9 +178,9 @@ export default function DashboardShell({
               </DropdownMenuContent>
             </DropdownMenu>
           </header>
-          <main className="flex-1 overflow-y-auto">
-            <ScrollArea className="h-full">
-              <div className="container mx-auto py-6 px-4 md:px-6">
+          <main className="flex-1 w-full h-full overflow-y-auto">
+            <ScrollArea className="h-full w-full">
+              <div className="container w-full h-full mx-auto py-6 px-4 md:px-6">
                 {children}
               </div>
             </ScrollArea>
@@ -176,6 +188,5 @@ export default function DashboardShell({
         </div>
       </div>
     </SidebarProvider>
-  )
+  );
 }
-
