@@ -26,13 +26,10 @@ const topics = [
   "Other"
 ];
 
-const adPlatforms = [
-  "YouTube",
-  "Google Ads",
-  "Instagram",
-  "Facebook",
-  "TikTok",
-  "Reddit",
+const platforms = [
+  { id: 'youtube', label: 'YouTube' },
+  { id: 'reddit', label: 'Reddit' },
+  { id: 'facebook', label: 'Facebook' }
 ];
 
 export default function InputPage() {
@@ -40,8 +37,6 @@ export default function InputPage() {
   const [customTopic, setCustomTopic] = useState('');
   const [keywords, setKeywords] = useState([]);
   const [keywordInput, setKeywordInput] = useState('');
-  const [competitors, setCompetitors] = useState([]);
-  const [competitorInput, setCompetitorInput] = useState('');
   const [selectedPlatforms, setSelectedPlatforms] = useState([]);
   const { toast } = useToast();
 
@@ -61,22 +56,15 @@ export default function InputPage() {
     }
   };
 
-  const handleCompetitorAdd = () => {
-    if (competitorInput.trim()) {
-      setCompetitors((prev) => [...prev, competitorInput.trim()]);
-      setCompetitorInput('');
-    }
-  };
-
-  const handlePlatformToggle = (platform) => {
+  const handlePlatformToggle = (platformId) => {
     setSelectedPlatforms((prev) =>
-      prev.includes(platform)
-        ? prev.filter((p) => p !== platform)
-        : [...prev, platform]
+      prev.includes(platformId)
+        ? prev.filter((p) => p !== platformId)
+        : [...prev, platformId]
     );
   };
 
-  const handleStartScraping = () => {
+  const handleStartScraping = async () => {
     if (!topic && !customTopic) {
       toast({
         title: "Error",
@@ -86,19 +74,65 @@ export default function InputPage() {
       return;
     }
 
-    const formData = {
-      topic: topic || customTopic,
-      keywords,
-      competitors,
-      platforms: selectedPlatforms,
-    };
+    if (keywords.length === 0) {
+      toast({
+        title: "Error",
+        description: "Please add at least one keyword.",
+        variant: "destructive",
+      });
+      return;
+    }
 
-    console.log('Form data:', formData);
+    if (selectedPlatforms.length === 0) {
+      toast({
+        title: "Error",
+        description: "Please select at least one platform.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Construct API URL with parameters
+    const baseUrl = 'http://127.0.0.1:8000/data';
+    const params = new URLSearchParams();
     
-    toast({
-      title: "Starting Analysis",
-      description: "Your data is being collected. This may take a few minutes.",
+    // Add keywords
+    params.append('keywords', keywords.join(','));
+    
+    // Add platform parameters
+    platforms.forEach(platform => {
+      params.append(platform.id, selectedPlatforms.includes(platform.id).toString());
     });
+
+    const apiUrl = `${baseUrl}?${params.toString()}`;
+
+    try {
+      toast({
+        title: "Starting Analysis",
+        description: "Your data is being collected. This may take a few minutes.",
+      });
+
+      const response = await fetch(apiUrl);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      
+      // Handle the response data here
+      console.log('API Response:', data);
+      
+      toast({
+        title: "Analysis Complete",
+        description: "Your data has been collected successfully.",
+      });
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      toast({
+        title: "Error",
+        description: "Failed to fetch data. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -152,11 +186,11 @@ export default function InputPage() {
             {/* Keywords Section */}
             <div className="space-y-6">
               <div>
-                <Label htmlFor="keywords">Refine Your Search with Keywords (Optional)</Label>
+                <Label htmlFor="keywords">Enter Keywords for Analysis *</Label>
                 <div className="flex mt-1">
                   <Input
                     id="keywords"
-                    placeholder="Add keywords"
+                    placeholder="Add keywords (e.g., fitness app, gym, diet)"
                     value={keywordInput}
                     onChange={(e) => setKeywordInput(e.target.value)}
                     className="mr-2"
@@ -183,51 +217,18 @@ export default function InputPage() {
                 </div>
               </div>
 
-              {/* Competitors Section */}
-              <div>
-                <Label htmlFor="competitors">List Competitor Apps or Products (Optional)</Label>
-                <div className="flex mt-1">
-                  <Input
-                    id="competitors"
-                    placeholder="Add competitors"
-                    value={competitorInput}
-                    onChange={(e) => setCompetitorInput(e.target.value)}
-                    className="mr-2"
-                    onKeyPress={(e) => {
-                      if (e.key === 'Enter') {
-                        e.preventDefault();
-                        handleCompetitorAdd();
-                      }
-                    }}
-                  />
-                  <Button onClick={handleCompetitorAdd}>Add</Button>
-                </div>
-                <div className="mt-2 flex flex-wrap gap-2">
-                  {competitors.map((competitor, index) => (
-                    <Badge 
-                      key={index} 
-                      variant="secondary"
-                      className="cursor-pointer"
-                      onClick={() => setCompetitors(competitors.filter((_, i) => i !== index))}
-                    >
-                      {competitor} ×
-                    </Badge>
-                  ))}
-                </div>
-              </div>
-
               {/* Platforms Section */}
               <div>
-                <Label>Select Ad Platforms for Scraping (Optional)</Label>
+                <Label>Select Platforms for Analysis *</Label>
                 <div className="mt-2 grid grid-cols-2 sm:grid-cols-3 gap-4">
-                  {adPlatforms.map((platform) => (
+                  {platforms.map((platform) => (
                     <Button
-                      key={platform}
-                      variant={selectedPlatforms.includes(platform) ? "default" : "outline"}
-                      onClick={() => handlePlatformToggle(platform)}
+                      key={platform.id}
+                      variant={selectedPlatforms.includes(platform.id) ? "default" : "outline"}
+                      onClick={() => handlePlatformToggle(platform.id)}
                       className="justify-start"
                     >
-                      {platform}
+                      {platform.label}
                     </Button>
                   ))}
                 </div>

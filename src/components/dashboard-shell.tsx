@@ -27,7 +27,6 @@ import {
   Settings,
   CreditCard,
   LogOut,
-  Plus,
   Home,
   FileText,
   BarChart,
