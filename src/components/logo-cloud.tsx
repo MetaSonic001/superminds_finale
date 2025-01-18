@@ -5,12 +5,12 @@ import Image from "next/image"
 
 export function LogoCloud() {
   const logos = [
-    { name: "Company 1", src: "/placeholder.svg" },
-    { name: "Company 2", src: "/placeholder.svg" },
-    { name: "Company 3", src: "/placeholder.svg" },
-    { name: "Company 4", src: "/placeholder.svg" },
-    { name: "Company 5", src: "/placeholder.svg" },
-    { name: "Company 6", src: "/placeholder.svg" },
+    { name: "Company 1", src: "/logo.png" },
+    { name: "Company 2", src: "/AI-Logo-1.png" },
+    { name: "Company 3", src: "/logo2.png" },
+    { name: "Company 4", src: "/logo3.png" },
+    { name: "Company 5", src: "/AI-Logo-8.png" },
+    { name: "Company 6", src: "/logo5.png" },
   ]
 
   return (
@@ -22,7 +22,7 @@ export function LogoCloud() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: index * 0.1 }}
           whileHover={{ scale: 1.05 }}
-          className="flex items-center justify-center grayscale transition hover:grayscale-0"
+          className="flex items-center justify-center rounded-lg bg-white shadow-md"
         >
           <Image
             src={logo.src || "/placeholder.svg"}

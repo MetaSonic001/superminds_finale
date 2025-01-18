@@ -24,7 +24,7 @@ export function TestimonialCard({
         <p className="text-sm text-muted-foreground">{quote}</p>
         <div className="flex items-center gap-4">
           <Image
-            src="/placeholder.svg"
+            src="/ppl.jpg"
             alt={author}
             width={40}
             height={40}

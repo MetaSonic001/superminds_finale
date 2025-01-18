@@ -114,7 +114,7 @@ export default function LandingPage() {
               </div>
               <div className="relative mx-auto aspect-video w-full max-w-xl lg:mx-0">
                 <Image
-                  src="/placeholder.svg?height=720&width=1280"
+                  src="/heroimage.png"
                   alt="SparkAgency Dashboard"
                   className="rounded-xl shadow-2xl"
                   width={1280}
