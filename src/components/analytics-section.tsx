@@ -5,7 +5,7 @@ import { Cell, Pie, PieChart, ResponsiveContainer } from "recharts"
 
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { AdData } from "../types"
+import { AdData } from "@/types"
 
 const data: AdData[] = [
   { type: "Videos", count: 581, percentage: 95 },
