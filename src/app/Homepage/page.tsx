@@ -1,5 +1,8 @@
+"use client";
 import { Button } from "@/components/ui/button";
+
 import { Card, CardContent } from "@/components/ui/card";
+import { useState } from "react";
 import {
   ArrowRight,
   BarChart2,
@@ -27,6 +30,7 @@ import {
 } from "@clerk/nextjs";
 
 export default function LandingPage() {
+  const [menuOpen, setMenuOpen] = useState(false);
   return (
     <div
       className={cn(
@@ -41,7 +45,8 @@ export default function LandingPage() {
             <Sparkles className="h-6 w-6" />
             <span className="font-bold">SparkAgency</span>
           </Link>
-          <nav className="flex items-center gap-6">
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-6">
             <Link
               href="#features"
               className="text-sm font-medium hover:underline"
@@ -73,15 +78,103 @@ export default function LandingPage() {
               <Link href="/signup">Start Free Trial</Link>
             </Button>
           </nav>
+
+          {/* Hamburger Menu for Mobile */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="text-sm font-medium focus:outline-none"
+            >
+              <svg
+                className="h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16m-7 6h7"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
+
+        {/* Mobile Menu */}
+        {menuOpen && (
+          <div className="fixed inset-y-0 right-0 w-3/4 bg-white shadow-lg z-40 transform transition-transform duration-300">
+            {/* Close Button */}
+            <button
+              onClick={() => setMenuOpen(false)}
+              className="absolute top-4 right-4 text-sm font-medium focus:outline-none"
+            >
+              <svg
+                className="h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+
+            {/* Menu Links */}
+            <nav className="flex flex-col items-start p-6 space-y-4">
+              <Link
+                href="#features"
+                className="text-lg font-medium text-black hover:underline"
+                onClick={() => setMenuOpen(false)}
+              >
+                Features
+              </Link>
+              <Link
+                href="#how-it-works"
+                className="text-lg font-medium text-black hover:underline"
+                onClick={() => setMenuOpen(false)}
+              >
+                How it Works
+              </Link>
+              <Link
+                href="#pricing"
+                className="text-lg font-medium text-black hover:underline"
+                onClick={() => setMenuOpen(false)}
+              >
+                Pricing
+              </Link>
+              <SignedOut>
+                <SignInButton />
+              </SignedOut>
+              <SignedIn>
+                <SignOutButton />
+              </SignedIn>
+              <Button
+                asChild
+                className="bg-[#218380] text-[#fffff2] hover:bg-[#ffad05] mt-4"
+              >
+                <Link href="/signup">Start Free Trial</Link>
+              </Button>
+            </nav>
+          </div>
+        )}
       </header>
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="container max-w-7xl mx-auto py-12 md:py-24 lg:py-32">
+
+        <section className="container max-w-7xl mx-auto px-4 py-12 md:py-24 lg:py-32">
           <FadeIn>
             <div className="grid items-center gap-8 lg:grid-cols-2">
-              <div className="flex flex-col items-start gap-4">
+              {/* Text Content */}
+              <div className="flex flex-col items-start gap-6 lg:gap-8">
                 <h1 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl xl:text-6xl">
                   Streamline Ad Research.
                   <br />
@@ -96,7 +189,7 @@ export default function LandingPage() {
                   <Button
                     size="lg"
                     asChild
-                    className="bg-[#ff715b] text-[#fffff2] hover:bg-[#ffad05]"
+                    className="bg-[#ff715b] text-[#fffff2] hover:bg-[#ffad05] px-6 py-3"
                   >
                     <Link href="/signup">
                       Start Free Trial
@@ -106,17 +199,20 @@ export default function LandingPage() {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="border-[#218380] text-[#218380] hover:bg-[#218380] hover:text-[#fffff2]"
+                    className="border-[#218380] text-[#218380] hover:bg-[#218380] hover:text-[#fffff2] px-6 py-3"
                   >
                     Book a Demo
                   </Button>
                 </div>
               </div>
-              <div className="relative mx-auto aspect-video w-full max-w-xl lg:mx-0">
+
+              {/* Image Content */}
+
+              <div className="relative mx-auto w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-xl aspect-video">
                 <Image
                   src="/placeholder.svg?height=720&width=1280"
                   alt="SparkAgency Dashboard"
-                  className="rounded-xl shadow-2xl"
+                  className="rounded-xl shadow-2xl w-full h-auto"
                   width={1280}
                   height={720}
                   priority
@@ -125,7 +221,6 @@ export default function LandingPage() {
             </div>
           </FadeIn>
         </section>
-
         {/* Stats Section */}
         <section className="container max-w-7xl mx-auto py-10 sm:py-16 lg:py-20">
           <FadeUp>
