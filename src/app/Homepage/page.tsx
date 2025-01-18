@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { ArrowRight, BarChart2, Brain, Clock, Search, Shield, Sparkles,Zap } from 'lucide-react'
+import { ArrowRight, BarChart2, Brain, Clock, Search, Shield, Sparkles, Zap } from 'lucide-react'
 import Image from "next/image"
 import Link from "next/link"
 import { ComparisonTable } from "@/components/comparison-table"
@@ -9,12 +9,17 @@ import { FadeUp } from "@/components/fade-up"
 import { LogoCloud } from "@/components/logo-cloud"
 import { TestimonialCard } from "@/components/testimonial-card"
 import { VideoModal } from "@/components/video-modal"
+import { cn } from "@/lib/utils"
 
 export default function LandingPage() {
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className={cn(
+      "flex min-h-screen flex-col",
+      "bg-[#fffff2] text-[#222222]",
+      "px-4 sm:px-6 lg:px-8"
+    )}>
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-14 items-center justify-between">
+        <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex h-14 items-center justify-between">
           <Link href="/" className="flex items-center space-x-2">
             <Sparkles className="h-6 w-6" />
             <span className="font-bold">SparkAgency</span>
@@ -29,10 +34,10 @@ export default function LandingPage() {
             <Link href="#pricing" className="text-sm font-medium hover:underline">
               Pricing
             </Link>
-            <Button variant="ghost" asChild>
+            <Button variant="ghost" asChild className="text-[#222222] hover:text-[#218380]">
               <Link href="/login">Login</Link>
             </Button>
-            <Button asChild>
+            <Button asChild className="bg-[#218380] text-[#fffff2] hover:bg-[#ffad05]">
               <Link href="/signup">Start Free Trial</Link>
             </Button>
           </nav>
@@ -41,27 +46,27 @@ export default function LandingPage() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="container py-24 sm:py-32">
+        <section className="container max-w-7xl mx-auto py-12 md:py-24 lg:py-32">
           <FadeIn>
             <div className="grid items-center gap-8 lg:grid-cols-2">
               <div className="flex flex-col items-start gap-4">
-                <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+                <h1 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl xl:text-6xl">
                   Streamline Ad Research.
                   <br />
                   Create Campaigns That Convert.
                 </h1>
-                <p className="text-lg text-muted-foreground sm:text-xl">
+                <p className="text-base sm:text-lg lg:text-xl text-[#222222]/80">
                   SparkAgency automates your ad research by analyzing user pain points, competitor ads,
                   and market trends — all in one platform.
                 </p>
-                <div className="flex flex-col gap-3 min-[400px]:flex-row">
-                  <Button size="lg" asChild>
+                <div className="flex flex-col gap-3 sm:flex-row">
+                  <Button size="lg" asChild className="bg-[#ff715b] text-[#fffff2] hover:bg-[#ffad05]">
                     <Link href="/signup">
                       Start Free Trial
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
-                  <Button size="lg" variant="outline">
+                  <Button size="lg" variant="outline" className="border-[#218380] text-[#218380] hover:bg-[#218380] hover:text-[#fffff2]">
                     Book a Demo
                   </Button>
                 </div>
@@ -81,27 +86,27 @@ export default function LandingPage() {
         </section>
 
         {/* Stats Section */}
-        <section className="container py-14 sm:py-20">
+        <section className="container max-w-7xl mx-auto py-10 sm:py-16 lg:py-20">
           <FadeUp>
-            <div className="grid gap-8 rounded-xl border bg-card p-8 md:grid-cols-3">
+            <div className="grid gap-8 rounded-xl border border-[#ffad05] bg-[#fffff2] p-6 sm:p-8 md:grid-cols-3">
               <div className="flex flex-col items-center justify-center text-center">
-                <div className="text-3xl font-bold md:text-4xl">85%</div>
-                <p className="text-sm text-muted-foreground">Improved Ad Performance</p>
+                <div className="text-2xl font-bold sm:text-3xl md:text-4xl text-[#ff715b]">85%</div>
+                <p className="text-sm text-[#222222]/80">Improved Ad Performance</p>
               </div>
               <div className="flex flex-col items-center justify-center text-center">
-                <div className="text-3xl font-bold md:text-4xl">20+ hrs</div>
-                <p className="text-sm text-muted-foreground">Saved Per Campaign</p>
+                <div className="text-2xl font-bold sm:text-3xl md:text-4xl text-[#218380]">20+ hrs</div>
+                <p className="text-sm text-[#222222]/80">Saved Per Campaign</p>
               </div>
               <div className="flex flex-col items-center justify-center text-center">
-                <div className="text-3xl font-bold md:text-4xl">10k+</div>
-                <p className="text-sm text-muted-foreground">Active Users</p>
+                <div className="text-2xl font-bold sm:text-3xl md:text-4xl text-[#ff715b]">10k+</div>
+                <p className="text-sm text-[#222222]/80">Active Users</p>
               </div>
             </div>
           </FadeUp>
         </section>
 
         {/* Logo Cloud */}
-        <section className="container py-14 sm:py-20">
+        <section className="container max-w-7xl mx-auto py-14 sm:py-20">
           <FadeUp>
             <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
               <h2 className="text-3xl font-bold sm:text-4xl">
@@ -118,65 +123,65 @@ export default function LandingPage() {
         </section>
 
         {/* Why Choose Us Section */}
-        <section id="features" className="container py-14 sm:py-20">
+        <section id="features" className="container max-w-7xl mx-auto py-12 sm:py-16 lg:py-20">
           <FadeUp>
             <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
-              <h2 className="text-3xl font-bold sm:text-4xl">Why Choose SparkAgency?</h2>
-              <p className="max-w-[85%] text-muted-foreground">
+              <h2 className="text-2xl font-bold sm:text-3xl lg:text-4xl">Why Choose SparkAgency?</h2>
+              <p className="max-w-[85%] text-[#222222]/80">
                 Powerful features to help you create data-driven, high-converting ad campaigns
               </p>
             </div>
-            <div className="mx-auto grid max-w-5xl gap-8 py-14 sm:grid-cols-2 md:grid-cols-3">
-              <Card>
+            <div className="mx-auto grid max-w-5xl gap-8 py-8 sm:py-12 sm:grid-cols-2 lg:grid-cols-3">
+              <Card className="bg-[#fffff2] border-[#218380]">
                 <CardContent className="flex flex-col items-center gap-3 p-6">
-                  <Search className="h-10 w-10 text-primary" />
+                  <Search className="h-10 w-10 text-[#ff715b]" />
                   <h3 className="text-center text-xl font-bold">Research Automation</h3>
-                  <p className="text-center text-sm text-muted-foreground">
+                  <p className="text-center text-sm text-[#222222]/80">
                     Analyze blogs, forums, app reviews, and competitor ads effortlessly
                   </p>
                 </CardContent>
               </Card>
-              <Card>
+              <Card className="bg-[#fffff2] border-[#218380]">
                 <CardContent className="flex flex-col items-center gap-3 p-6">
-                  <Brain className="h-10 w-10 text-primary" />
+                  <Brain className="h-10 w-10 text-[#ff715b]" />
                   <h3 className="text-center text-xl font-bold">Sentiment Analysis</h3>
-                  <p className="text-center text-sm text-muted-foreground">
+                  <p className="text-center text-sm text-[#222222]/80">
                     Identify what drives your audience through advanced AI insights
                   </p>
                 </CardContent>
               </Card>
-              <Card>
+              <Card className="bg-[#fffff2] border-[#218380]">
                 <CardContent className="flex flex-col items-center gap-3 p-6">
-                  <BarChart2 className="h-10 w-10 text-primary" />
+                  <BarChart2 className="h-10 w-10 text-[#ff715b]" />
                   <h3 className="text-center text-xl font-bold">Competitor Analysis</h3>
-                  <p className="text-center text-sm text-muted-foreground">
+                  <p className="text-center text-sm text-[#222222]/80">
                     Get detailed insights into competitor strategies and performance
                   </p>
                 </CardContent>
               </Card>
-              <Card>
+              <Card className="bg-[#fffff2] border-[#218380]">
                 <CardContent className="flex flex-col items-center gap-3 p-6">
-                  <Zap className="h-10 w-10 text-primary" />
+                  <Zap className="h-10 w-10 text-[#ff715b]" />
                   <h3 className="text-center text-xl font-bold">Quick Insights</h3>
-                  <p className="text-center text-sm text-muted-foreground">
+                  <p className="text-center text-sm text-[#222222]/80">
                     Access actionable insights and recommendations instantly
                   </p>
                 </CardContent>
               </Card>
-              <Card>
+              <Card className="bg-[#fffff2] border-[#218380]">
                 <CardContent className="flex flex-col items-center gap-3 p-6">
-                  <Clock className="h-10 w-10 text-primary" />
+                  <Clock className="h-10 w-10 text-[#ff715b]" />
                   <h3 className="text-center text-xl font-bold">Time Saving</h3>
-                  <p className="text-center text-sm text-muted-foreground">
+                  <p className="text-center text-sm text-[#222222]/80">
                     Cut research time by up to 80% with automated analysis
                   </p>
                 </CardContent>
               </Card>
-              <Card>
+              <Card className="bg-[#fffff2] border-[#218380]">
                 <CardContent className="flex flex-col items-center gap-3 p-6">
-                  <Shield className="h-10 w-10 text-primary" />
+                  <Shield className="h-10 w-10 text-[#ff715b]" />
                   <h3 className="text-center text-xl font-bold">Data Security</h3>
-                  <p className="text-center text-sm text-muted-foreground">
+                  <p className="text-center text-sm text-[#222222]/80">
                     Enterprise-grade security for your research and insights
                   </p>
                 </CardContent>
@@ -186,40 +191,40 @@ export default function LandingPage() {
         </section>
 
         {/* How It Works Section */}
-        <section id="how-it-works" className="bg-muted/50">
-          <div className="container py-14 sm:py-20">
+        <section id="how-it-works" className="bg-[#218380]/10 container max-w-7xl mx-auto">
+          <div className=" py-12 sm:py-16 lg:py-20">
             <FadeUp>
               <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
-                <h2 className="text-3xl font-bold sm:text-4xl">How It Works</h2>
-                <p className="max-w-[85%] text-muted-foreground">
+                <h2 className="text-2xl font-bold sm:text-3xl lg:text-4xl">How It Works</h2>
+                <p className="max-w-[85%] text-[#222222]/80">
                   Get started with SparkAgency in three simple steps
                 </p>
               </div>
               <div className="mx-auto mt-8 grid max-w-5xl gap-8 sm:grid-cols-3">
                 <div className="relative flex flex-col items-center gap-4 text-center">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-3xl font-bold text-primary-foreground">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#ff715b] text-3xl font-bold text-[#fffff2]">
                     1
                   </div>
                   <h3 className="text-xl font-bold">Input Your Topic</h3>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-[#222222]/80">
                     Select your industry, add custom keywords, and list competitors
                   </p>
                 </div>
                 <div className="relative flex flex-col items-center gap-4 text-center">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-3xl font-bold text-primary-foreground">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#ff715b] text-3xl font-bold text-[#fffff2]">
                     2
                   </div>
                   <h3 className="text-xl font-bold">Automated Analysis</h3>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-[#222222]/80">
                     Our AI gathers and analyzes data from multiple sources
                   </p>
                 </div>
                 <div className="relative flex flex-col items-center gap-4 text-center">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-3xl font-bold text-primary-foreground">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#ff715b] text-3xl font-bold text-[#fffff2]">
                     3
                   </div>
                   <h3 className="text-xl font-bold">Get Insights</h3>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-[#222222]/80">
                     View insights and recommendations on your interactive dashboard
                   </p>
                 </div>
@@ -229,7 +234,7 @@ export default function LandingPage() {
         </section>
 
         {/* Testimonials Section */}
-        <section className="container py-14 sm:py-20">
+        <section className="container max-w-7xl mx-auto py-14 sm:py-20">
           <FadeUp>
             <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
               <h2 className="text-3xl font-bold sm:text-4xl">Trusted by Marketers</h2>
@@ -261,8 +266,8 @@ export default function LandingPage() {
         </section>
 
         {/* Video Demo Section */}
-        <section className="bg-muted/50">
-          <div className="container py-14 sm:py-20">
+        <section className="bg-muted/50 container max-w-7xl mx-auto">
+          <div className=" py-14 sm:py-20">
             <FadeUp>
               <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
                 <h2 className="text-3xl font-bold sm:text-4xl">See SparkAgency in Action</h2>
@@ -279,25 +284,25 @@ export default function LandingPage() {
         </section>
 
         {/* Pricing Section */}
-        <section id="pricing" className="container py-14 sm:py-20">
+        <section id="pricing" className="container max-w-7xl mx-auto py-12 sm:py-16 lg:py-20">
           <FadeUp>
             <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
-              <h2 className="text-3xl font-bold sm:text-4xl">Simple, Transparent Pricing</h2>
-              <p className="max-w-[85%] text-muted-foreground">
-                Choose the plan thats right for your business
+              <h2 className="text-2xl font-bold sm:text-3xl lg:text-4xl">Simple, Transparent Pricing</h2>
+              <p className="max-w-[85%] text-[#222222]/80">
+                Choose the plan that's right for your business
               </p>
             </div>
             <div className="mx-auto mt-8 grid max-w-5xl gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {/* Starter Plan */}
-              <Card>
+              <Card className="bg-[#fffff2] border-[#218380]">
                 <CardContent className="flex flex-col gap-6 p-6">
                   <div>
                     <h3 className="text-2xl font-bold">Starter</h3>
-                    <p className="text-sm text-muted-foreground">Perfect for individuals</p>
+                    <p className="text-sm text-[#222222]/80">Perfect for individuals</p>
                   </div>
                   <div className="flex items-baseline gap-1">
                     <span className="text-3xl font-bold">$49</span>
-                    <span className="text-sm text-muted-foreground">/month</span>
+                    <span className="text-sm text-[#222222]/80">/month</span>
                   </div>
                   <ul className="grid gap-3 text-sm">
                     <li className="flex items-center gap-2">
@@ -359,18 +364,18 @@ export default function LandingPage() {
               </Card>
 
               {/* Pro Plan */}
-              <Card className="relative border-primary">
+              <Card className="relative border-primary bg-[#fffff2] border-[#218380]">
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground">
                   Popular
                 </div>
                 <CardContent className="flex flex-col gap-6 p-6">
                   <div>
                     <h3 className="text-2xl font-bold">Pro</h3>
-                    <p className="text-sm text-muted-foreground">Perfect for small teams</p>
+                    <p className="text-sm text-[#222222]/80">Perfect for small teams</p>
                   </div>
                   <div className="flex items-baseline gap-1">
                     <span className="text-3xl font-bold">$99</span>
-                    <span className="text-sm text-muted-foreground">/month</span>
+                    <span className="text-sm text-[#222222]/80">/month</span>
                   </div>
                   <ul className="grid gap-3 text-sm">
                     <li className="flex items-center gap-2">
@@ -449,11 +454,11 @@ export default function LandingPage() {
               </Card>
 
               {/* Enterprise Plan */}
-              <Card>
+              <Card className="bg-[#fffff2] border-[#218380]">
                 <CardContent className="flex flex-col gap-6 p-6">
                   <div>
                     <h3 className="text-2xl font-bold">Enterprise</h3>
-                    <p className="text-sm text-muted-foreground">Perfect for large teams</p>
+                    <p className="text-sm text-[#222222]/80">Perfect for large teams</p>
                   </div>
                   <div className="flex items-baseline gap-1">
                     <span className="text-3xl font-bold">Custom</span>
@@ -521,8 +526,8 @@ export default function LandingPage() {
         </section>
 
         {/* Comparison Table Section */}
-        <section className="bg-muted/50">
-          <div className="container py-14 sm:py-20">
+        <section className="bg-muted/50 container max-w-7xl mx-auto">
+          <div className=" py-14 sm:py-20">
             <FadeUp>
               <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
                 <h2 className="text-3xl font-bold sm:text-4xl">How Does SparkAgency Compare?</h2>
@@ -538,22 +543,22 @@ export default function LandingPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="bg-muted/50">
-          <div className="container py-14 sm:py-20">
+        <section className="bg-[#218380]/10 container max-w-7xl mx-auto">
+          <div className=" py-12 sm:py-16 lg:py-20">
             <FadeUp>
               <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
-                <h2 className="text-3xl font-bold sm:text-4xl">
+                <h2 className="text-2xl font-bold sm:text-3xl lg:text-4xl">
                   Ready to Transform Your Ad Research?
                 </h2>
-                <p className="max-w-[85%] text-muted-foreground">
+                <p className="max-w-[85%] text-[#222222]/80">
                   Join thousands of marketers who have already improved their campaign performance with
                   SparkAgency
                 </p>
-                <div className="flex flex-col gap-3 min-[400px]:flex-row">
-                  <Button size="lg" asChild>
+                <div className="flex flex-col gap-3 sm:flex-row">
+                  <Button size="lg" asChild className="bg-[#ff715b] text-[#fffff2] hover:bg-[#ffad05]">
                     <Link href="/signup">Start Free Trial</Link>
                   </Button>
-                  <Button size="lg" variant="outline">
+                  <Button size="lg" variant="outline" className="border-[#218380] text-[#218380] hover:bg-[#218380] hover:text-[#fffff2]">
                     Schedule Demo
                   </Button>
                 </div>
@@ -563,14 +568,14 @@ export default function LandingPage() {
         </section>
       </main>
 
-      <footer className="border-t">
-        <div className="container flex flex-col gap-8 py-8 md:flex-row md:py-12">
+      <footer className="border-t border-[#218380]">
+        <div className="container max-w-7xl mx-auto flex flex-col gap-8 py-8 md:flex-row md:py-12">
           <div className="flex flex-col gap-4 md:w-1/3">
             <Link href="/" className="flex items-center space-x-2">
               <Sparkles className="h-6 w-6" />
               <span className="font-bold">SparkAgency</span>
             </Link>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-[#222222]/80">
               Streamline your ad research process and create campaigns that convert with AI-powered
               insights.
             </p>
@@ -578,7 +583,7 @@ export default function LandingPage() {
           <div className="grid flex-1 grid-cols-2 gap-8 sm:grid-cols-3">
             <div className="flex flex-col gap-2">
               <h3 className="text-sm font-medium">Product</h3>
-              <ul className="flex flex-col gap-2 text-sm text-muted-foreground">
+              <ul className="flex flex-col gap-2 text-sm text-[#222222]/80">
                 <li>
                   <Link href="#features">Features</Link>
                 </li>
@@ -592,7 +597,7 @@ export default function LandingPage() {
             </div>
             <div className="flex flex-col gap-2">
               <h3 className="text-sm font-medium">Company</h3>
-              <ul className="flex flex-col gap-2 text-sm text-muted-foreground">
+              <ul className="flex flex-col gap-2 text-sm text-[#222222]/80">
                 <li>
                   <Link href="/about">About</Link>
                 </li>
@@ -606,7 +611,7 @@ export default function LandingPage() {
             </div>
             <div className="flex flex-col gap-2">
               <h3 className="text-sm font-medium">Legal</h3>
-              <ul className="flex flex-col gap-2 text-sm text-muted-foreground">
+              <ul className="flex flex-col gap-2 text-sm text-[#222222]/80">
                 <li>
                   <Link href="/privacy">Privacy</Link>
                 </li>
@@ -617,15 +622,15 @@ export default function LandingPage() {
             </div>
           </div>
         </div>
-        <div className="border-t">
-          <div className="container flex flex-col items-center justify-between gap-4 py-6 md:h-24 md:flex-row md:py-0">
-            <div className="text-center text-sm leading-loose text-muted-foreground md:text-left">
+        <div className="border-t border-[#218380]">
+          <div className="container max-w-7xl mx-auto flex flex-col items-center justify-between gap-4 py-6 md:h-24 md:flex-row md:py-0">
+            <div className="text-center text-sm leading-loose text-[#222222]/80 md:text-left">
               Built by{" "}
-              <a href="#" className="font-medium underline underline-offset-4">
+              <a href="#" className="font-medium underline underline-offset-4 text-[#ff715b]">
                 SparkAgency
               </a>
               . The source code is available on{" "}
-              <a href="#" className="font-medium underline underline-offset-4">
+              <a href="#" className="font-medium underline underline-offset-4 text-[#ff715b]">
                 GitHub
               </a>
               .
