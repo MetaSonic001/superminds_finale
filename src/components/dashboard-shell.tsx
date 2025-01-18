@@ -35,6 +35,7 @@ import {
 } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useUser } from "@clerk/nextjs";
 
 const navItems = [
   {
@@ -76,6 +77,11 @@ export default function DashboardShell({
 }) {
   const pathname = usePathname();
   const [searchQuery, setSearchQuery] = useState("");
+  const { user } = useUser();
+
+  if (!user) {
+    return <p>Loading...</p>; // Optional: Add a loading state or fallback UI
+  }
 
   return (
     <SidebarProvider>
@@ -84,17 +90,28 @@ export default function DashboardShell({
           <SidebarHeader className="flex flex-col gap-2 p-4">
             <div className="flex items-center gap-2">
               <Avatar>
-                <AvatarImage src="/placeholder-avatar.jpg" alt="User" />
-                <AvatarFallback>JD</AvatarFallback>
+                <AvatarImage
+                  src={user.profileImageUrl || "/placeholder-avatar.jpg"}
+                  alt={user.fullName || "User"}
+                />
+                <AvatarFallback>
+                  {user.firstName?.[0] || "U"}
+                  {user.lastName?.[0] || "N"}
+                </AvatarFallback>
               </Avatar>
               <div>
-                <h2 className="text-lg font-semibold">John Doe</h2>
-                <p className="text-sm text-muted-foreground">Pro Plan</p>
+                <h2 className="text-lg font-semibold">
+                  {user.fullName || "Anonymous User"}
+                </h2>
+                <p className="text-sm text-muted-foreground">Pro Plan</p>{" "}
+                {/* Replace with dynamic plan data if available */}
               </div>
             </div>
             <div className="text-sm text-muted-foreground">
-              <p>Total searches: 42</p>
-              <p>Top keyword: &quot;AI Marketing&quot;</p>
+              <p>Total searches: 42</p>{" "}
+              {/* Replace with actual data if available */}
+              <p>Top keyword: &quot;AI Marketing&quot;</p>{" "}
+              {/* Replace with actual data if available */}
             </div>
           </SidebarHeader>
           <SidebarContent className="p-2">
@@ -146,17 +163,26 @@ export default function DashboardShell({
                   className="relative h-8 w-8 rounded-full"
                 >
                   <Avatar className="h-8 w-8">
-                    <AvatarImage src="/placeholder-avatar.jpg" alt="User" />
-                    <AvatarFallback>JD</AvatarFallback>
+                    <AvatarImage
+                      src={user.profileImageUrl || "/placeholder-avatar.jpg"}
+                      alt={user.fullName || "User"}
+                    />
+                    <AvatarFallback>
+                      {user.firstName?.[0] || "U"}
+                      {user.lastName?.[0] || "N"}
+                    </AvatarFallback>
                   </Avatar>
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-56" align="end" forceMount>
                 <DropdownMenuLabel className="font-normal">
                   <div className="flex flex-col space-y-1">
-                    <p className="text-sm font-medium leading-none">John Doe</p>
+                    <p className="text-sm font-medium leading-none">
+                      {user.fullName || "Anonymous User"}
+                    </p>
                     <p className="text-xs leading-none text-muted-foreground">
-                      john.doe@example.com
+                      {user.emailAddresses[0]?.emailAddress ||
+                        "No email provided"}
                     </p>
                   </div>
                 </DropdownMenuLabel>
