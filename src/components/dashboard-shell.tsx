@@ -79,10 +79,6 @@ export default function DashboardShell({
   const [searchQuery, setSearchQuery] = useState("");
   const { user } = useUser();
 
-  if (!user) {
-    return <p>Loading...</p>; // Optional: Add a loading state or fallback UI
-  }
-
   return (
     <SidebarProvider>
       <div className="flex h-screen overflow-hidden">
@@ -91,17 +87,17 @@ export default function DashboardShell({
             <div className="flex items-center gap-2">
               <Avatar>
                 <AvatarImage
-                  src={user.profileImageUrl || "/placeholder-avatar.jpg"}
-                  alt={user.fullName || "User"}
+                  src={user?.profileImageUrl || "/placeholder-avatar.jpg"}
+                  alt={user?.fullName || "User"}
                 />
                 <AvatarFallback>
-                  {user.firstName?.[0] || "U"}
-                  {user.lastName?.[0] || "N"}
+                  {user?.firstName?.[0] || "U"}
+                  {user?.lastName?.[0] || "N"}
                 </AvatarFallback>
               </Avatar>
               <div>
                 <h2 className="text-lg font-semibold">
-                  {user.fullName || "Anonymous User"}
+                  {user?.fullName || "Anonymous User"}
                 </h2>
                 <p className="text-sm text-muted-foreground">Pro Plan</p>{" "}
                 {/* Replace with dynamic plan data if available */}
@@ -164,12 +160,12 @@ export default function DashboardShell({
                 >
                   <Avatar className="h-8 w-8">
                     <AvatarImage
-                      src={user.profileImageUrl || "/placeholder-avatar.jpg"}
-                      alt={user.fullName || "User"}
+                      src={user?.profileImageUrl || "/placeholder-avatar.jpg"}
+                      alt={user?.fullName || "User"}
                     />
                     <AvatarFallback>
-                      {user.firstName?.[0] || "U"}
-                      {user.lastName?.[0] || "N"}
+                      {user?.firstName?.[0] || "U"}
+                      {user?.lastName?.[0] || "N"}
                     </AvatarFallback>
                   </Avatar>
                 </Button>
@@ -178,10 +174,10 @@ export default function DashboardShell({
                 <DropdownMenuLabel className="font-normal">
                   <div className="flex flex-col space-y-1">
                     <p className="text-sm font-medium leading-none">
-                      {user.fullName || "Anonymous User"}
+                      {user?.fullName || "Anonymous User"}
                     </p>
                     <p className="text-xs leading-none text-muted-foreground">
-                      {user.emailAddresses[0]?.emailAddress ||
+                      {user?.emailAddresses?.[0]?.emailAddress ||
                         "No email provided"}
                     </p>
                   </div>
