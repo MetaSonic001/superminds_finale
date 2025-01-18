@@ -21,8 +21,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Search,
   User,
@@ -36,6 +34,8 @@ import {
   Users,
   Zap,
 } from "lucide-react";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const navItems = [
   {
@@ -95,7 +95,7 @@ export default function DashboardShell({
             </div>
             <div className="text-sm text-muted-foreground">
               <p>Total searches: 42</p>
-              <p>Top keyword: "AI Marketing"</p>
+              <p>Top keyword: &quot;AI Marketing&quot;</p>
             </div>
           </SidebarHeader>
           <SidebarContent className="p-2">

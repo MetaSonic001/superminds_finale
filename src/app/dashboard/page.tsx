@@ -1,5 +1,4 @@
 import { Metadata } from "next"
-import DashboardShell from "@/components/dashboard-shell"
 import { UserProfile } from "@/components/user-profile"
 import { ResearchHistory } from "@/components/research-history"
 import { RecentActivity } from "@/components/recent-activity"
@@ -12,14 +11,14 @@ export const metadata: Metadata = {
 
 export default function DashboardPage() {
   return (
-    <DashboardShell>
+    <div>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         <UserProfile />
         <QuickStats />
         <RecentActivity />
       </div>
       <ResearchHistory />
-    </DashboardShell>
+    </div>
   )
 }
 
