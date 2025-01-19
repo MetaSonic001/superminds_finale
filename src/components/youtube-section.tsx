@@ -1,26 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-
-const videos = [
-  {
-    id: "1",
-    title: "Top 10 Pet Dental Care Tips",
-    views: "1.2M",
-    likes: "45K",
-  },
-  {
-    id: "2",
-    title: "How to Choose the Best Dog Food",
-    views: "890K",
-    likes: "32K",
-  },
-  {
-    id: "3",
-    title: "Natural Remedies for Pet Anxiety",
-    views: "750K",
-    likes: "28K",
-  },
-];
+import Link from "next/link";
 
 export function YouTubeSection({ data }) {
   return (
@@ -38,7 +18,7 @@ export function YouTubeSection({ data }) {
                   Views: {video.views} | Likes: {video.likes}
                 </p>
               </div>
-              <Button variant="outline">Watch</Button>
+              <Link href={video.url}>Watch</Link>
             </div>
           ))}
         </div>

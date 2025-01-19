@@ -36,6 +36,7 @@ export default function OutputPage() {
       insight: string;
       recommendation: string;
     }[];
+    wordcloud: string[];
   }
 
   const [data, setData] = useState<DataType | null>(null);
@@ -54,7 +55,7 @@ export default function OutputPage() {
     setLoading(true);
     try {
       const response = await fetch(
-        `/api/data?keywords=fitness app,gym,diet&reddit=${filters.reddit}&youtube=${filters.youtube}&facebook=${filters.facebook}`,
+        `/api/data?keywords=finance&reddit=${filters.reddit}&youtube=${filters.youtube}&facebook=${filters.facebook}`,
       );
       const result = await response.json();
       setData(result);
@@ -88,7 +89,7 @@ export default function OutputPage() {
             <InsightsSection />
             <TrendsSection data={data.youtube.commentSentiment} />
           </div>
-          <WordCloudSection />
+          <WordCloudSection data={data.wordcloud} />
           <YouTubeSection data={data.youtube.popularVideos} />
         </div>
       </div>
