@@ -4,7 +4,7 @@ import { ExternalLink } from 'lucide-react'
 
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { LandingPage } from "../types"
+import { LandingPage } from "@/types"
 
 const landingPages: LandingPage[] = [
   {
