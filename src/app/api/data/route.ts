@@ -33,7 +33,7 @@ export async function GET(request: Request) {
 
   try {
     const response = await fetch(
-      `http://localhost:8000/data?keywords=${keywords}&reddit=${includeReddit}&youtube=${includeYoutube}&facebook=${includeFacebook}`,
+      `http://192.168.2.239/data?keywords=${keywords}&reddit=${includeReddit}&youtube=${includeYoutube}&facebook=${includeFacebook}`,
     );
     const data: DataResponse = await response.json();
 
@@ -165,4 +165,3 @@ function generateMarketingInsights(data: DataResponse) {
 
   return insights;
 }
-
